@@ -1,0 +1,12 @@
+---
+title: Tìm kiếm
+eyebrow: Blog
+permalink: /tim-kiem/
+sitemap: false
+---
+<form class="bt-search" action="{{ '/tim-kiem/' | relative_url }}" method="get" role="search" style="margin-bottom:24px">
+  <label class="bt-sr" for="tim-kiem-q">Từ khóa</label>
+  <input id="tim-kiem-q" type="search" name="q" placeholder="Nhập từ khóa…" style="width:100%">
+</form>
+<p class="bt-meta" data-search-status role="status"></p>
+<ul class="bt-list" data-search-results="{{ '/search.json' | relative_url }}"></ul>

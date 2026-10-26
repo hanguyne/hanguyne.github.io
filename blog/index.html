@@ -1,0 +1,39 @@
+---
+layout: default
+title: Blog
+---
+<section class="bt-band">
+  <div class="bt-wrap">
+    <p class="bt-eyebrow">Blog</p>
+    <h1>Tất cả bài viết</h1>
+    <p class="bt-lead">Nhật ký hằng tuần lên vào mỗi Chủ nhật, cùng các ghi chép về học tập, sự nghiệp và đời sống.</p>
+  </div>
+</section>
+<div class="bt-wrap bt-section">
+  <div class="bt-layout">
+    <main class="bt-main">
+      {%- if paginator.posts.size > 0 %}
+      <div class="bt-grid">
+        {%- for post in paginator.posts %}
+        {% include post-card.html post=post %}
+        {%- endfor %}
+      </div>
+      {%- else %}
+      <div class="bt-empty">Chưa có bài viết nào. Bài nhật ký đầu tiên sẽ lên vào Chủ nhật này.</div>
+      {%- endif %}
+
+      {%- if paginator.total_pages > 1 %}
+      <nav class="bt-pager" aria-label="Phân trang">
+        {%- if paginator.previous_page %}
+        <a class="bt-btn bt-btn--outline" href="{{ paginator.previous_page_path | relative_url }}">← Trang trước</a>
+        {%- endif %}
+        <span class="bt-meta">Trang {{ paginator.page }} / {{ paginator.total_pages }}</span>
+        {%- if paginator.next_page %}
+        <a class="bt-btn" href="{{ paginator.next_page_path | relative_url }}">Trang sau →</a>
+        {%- endif %}
+      </nav>
+      {%- endif %}
+    </main>
+    {% include sidebar.html %}
+  </div>
+</div>

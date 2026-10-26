@@ -1,0 +1,19 @@
+---
+title: Thẻ
+eyebrow: Blog
+mo_ta: Tất cả bài viết, nhóm theo thẻ.
+permalink: /the/
+---
+{%- assign ds_the = site.tags | sort -%}
+{%- if ds_the.size > 0 %}
+{%- for tag in ds_the %}
+<h2 class="bt-group-title" id="{{ tag[0] | slugify }}">#{{ tag[0] }}</h2>
+<ul class="bt-list">
+  {%- for p in tag[1] %}
+  {% include post-row.html post=p %}
+  {%- endfor %}
+</ul>
+{%- endfor %}
+{%- else %}
+<div class="bt-empty">Chưa có thẻ nào.</div>
+{%- endif %}

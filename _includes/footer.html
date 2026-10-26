@@ -1,0 +1,43 @@
+{%- assign s = site.data.site -%}
+<footer class="bt-footer">
+  <div class="bt-wrap">
+    <div class="bt-footer__cols">
+      <div class="bt-footer__col bt-footer__col--wide">
+        <p class="bt-footer__brand">{{ site.title }}</p>
+        <p>{{ site.description }}</p>
+      </div>
+      <nav class="bt-footer__col" aria-label="Khám phá">
+        <h2 class="bt-footer__title">Khám phá</h2>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Trang chủ</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+          <li><a href="{{ '/du-an/' | relative_url }}">Dự án</a></li>
+          <li><a href="{{ '/gioi-thieu/' | relative_url }}">Giới thiệu</a></li>
+          <li><a href="{{ '/lien-he/' | relative_url }}">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <nav class="bt-footer__col" aria-label="Chuyên mục">
+        <h2 class="bt-footer__title">Chuyên mục</h2>
+        <ul>
+          {%- for cm in site.data.chuyen_muc %}
+          <li><a href="{{ '/chuyen-muc/' | append: cm.slug | append: '/' | relative_url }}">{{ cm.ten }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+      <div class="bt-footer__col bt-footer__col--wide">
+        <h2 class="bt-footer__title">Theo dõi nhật ký mỗi Chủ nhật</h2>
+        <p>Bài mới lên vào sáng Chủ nhật hằng tuần. Theo dõi qua <a href="{{ '/feed.xml' | relative_url }}">RSS</a>.</p>
+        <p>
+          {%- if s.facebook != "" and s.facebook %}<a href="{{ s.facebook }}">Facebook</a> · {% endif -%}
+          {%- if s.linkedin != "" and s.linkedin %}<a href="{{ s.linkedin }}">LinkedIn</a> · {% endif -%}
+          {%- if s.github != "" and s.github %}<a href="{{ s.github }}">GitHub</a> · {% endif -%}
+          <a href="{{ '/lien-he/' | relative_url }}">Liên hệ</a>
+        </p>
+      </div>
+    </div>
+    <div class="bt-footer__bottom">
+      <span>© {{ site.time | date: "%Y" }} {{ site.title }} · Đăng trên GitHub Pages</span>
+      <a href="#noi-dung">Lên đầu trang ↑</a>
+    </div>
+  </div>
+</footer>

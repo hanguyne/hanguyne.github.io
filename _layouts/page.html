@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<main class="bt-wrap bt-narrow bt-section">
+  {%- if page.eyebrow %}<p class="bt-eyebrow">{{ page.eyebrow }}</p>{% endif %}
+  <h1>{{ page.title }}</h1>
+  {%- if page.mo_ta %}<p class="bt-lead">{{ page.mo_ta }}</p>{% endif %}
+  <div class="bt-content">
+    {{ content }}
+  </div>
+</main>

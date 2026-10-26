@@ -1,0 +1,9 @@
+# Danh sách chuyên mục. Mỗi mục cần một file tương ứng trong thư mục chuyen-muc/.
+- ten: "Nhật ký hằng tuần"
+  slug: nhat-ky-hang-tuan
+- ten: "Học tập"
+  slug: hoc-tap
+- ten: "Sự nghiệp"
+  slug: su-nghiep
+- ten: "Đời sống"
+  slug: doi-song

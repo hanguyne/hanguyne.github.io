@@ -1,0 +1,28 @@
+{%- assign u = page.url -%}
+<header class="bt-header">
+  <div class="bt-wrap bt-header__inner">
+    <a class="bt-brand" href="{{ '/' | relative_url }}">
+      <span class="bt-brand__mark" aria-hidden="true">{{ site.title | slice: 0 }}</span>
+      <span>{{ site.title }}</span>
+    </a>
+    <nav class="bt-nav" aria-label="Menu chính">
+      <a href="{{ '/' | relative_url }}"{% if u == '/' %} class="is-active" aria-current="page"{% endif %}>Trang chủ</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if u contains '/blog/' or page.layout == 'post' %} class="is-active"{% endif %}>Blog</a>
+      <div class="bt-dropdown">
+        <a href="{{ '/blog/' | relative_url }}"{% if u contains '/chuyen-muc/' %} class="is-active"{% endif %}>Chuyên mục ▾</a>
+        <div class="bt-dropdown__menu">
+          {%- for cm in site.data.chuyen_muc %}
+          <a href="{{ '/chuyen-muc/' | append: cm.slug | append: '/' | relative_url }}">{{ cm.ten }}</a>
+          {%- endfor %}
+        </div>
+      </div>
+      <a href="{{ '/du-an/' | relative_url }}"{% if u contains '/du-an/' %} class="is-active"{% endif %}>Dự án</a>
+      <a href="{{ '/gioi-thieu/' | relative_url }}"{% if u == '/gioi-thieu/' %} class="is-active" aria-current="page"{% endif %}>Giới thiệu</a>
+      <a href="{{ '/lien-he/' | relative_url }}"{% if u == '/lien-he/' %} class="is-active" aria-current="page"{% endif %}>Liên hệ</a>
+    </nav>
+    <form class="bt-search" action="{{ '/tim-kiem/' | relative_url }}" method="get" role="search">
+      <label class="bt-sr" for="header-q">Tìm kiếm</label>
+      <input id="header-q" type="search" name="q" placeholder="Tìm bài viết…">
+    </form>
+  </div>
+</header>

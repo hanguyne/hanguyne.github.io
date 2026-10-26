@@ -1,0 +1,36 @@
+---
+layout: default
+title: Dự án
+description: Các dự án cá nhân, công việc và học tập.
+---
+<section class="bt-band">
+  <div class="bt-wrap">
+    <p class="bt-eyebrow">Dự án</p>
+    <h1>Những gì mình đang xây dựng</h1>
+    <p class="bt-lead">Các dự án cá nhân, công việc và học tập. Tiến độ được cập nhật trong bài nhật ký mỗi Chủ nhật.</p>
+    <div class="bt-filter" data-project-filter role="group" aria-label="Lọc theo trạng thái">
+      <button type="button" class="bt-btn bt-btn--outline" data-status="all" aria-pressed="true">Tất cả</button>
+      <button type="button" class="bt-btn bt-btn--outline" data-status="{{ 'Đang thực hiện' | slugify }}" aria-pressed="false">Đang thực hiện</button>
+      <button type="button" class="bt-btn bt-btn--outline" data-status="{{ 'Đã hoàn thành' | slugify }}" aria-pressed="false">Đã hoàn thành</button>
+    </div>
+  </div>
+</section>
+<main class="bt-wrap bt-section">
+  {%- assign ds = site.du_an | sort: "thu_tu" -%}
+  {%- if ds.size > 0 %}
+  <div class="bt-grid">
+    {%- for p in ds %}
+    {% include project-card.html project=p %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <div class="bt-empty">Chưa có dự án nào. Thêm dự án đầu tiên trong Pages CMS, mục "Dự án".</div>
+  {%- endif %}
+  <section class="bt-cta">
+    <div>
+      <h2>Theo dõi tiến độ mỗi Chủ nhật</h2>
+      <p>Mỗi bài nhật ký tuần có một mục cập nhật các dự án đang làm.</p>
+    </div>
+    <a class="bt-btn" href="{{ '/chuyen-muc/nhat-ky-hang-tuan/' | relative_url }}">Đọc nhật ký tuần</a>
+  </section>
+</main>

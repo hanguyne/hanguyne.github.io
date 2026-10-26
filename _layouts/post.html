@@ -1,0 +1,83 @@
+---
+layout: default
+---
+{%- assign s = site.data.site -%}
+{%- assign cm = site.data.chuyen_muc | where: "ten", page.category | first -%}
+{%- assign so_tu = content | strip_html | number_of_words -%}
+{%- assign phut_doc = so_tu | divided_by: 200 | plus: 1 -%}
+<div class="bt-wrap bt-section">
+  <div class="bt-layout">
+    <main class="bt-main">
+      <article class="bt-card bt-article">
+        {%- if cm %}
+        <a class="bt-chip" href="{{ '/chuyen-muc/' | append: cm.slug | append: '/' | relative_url }}">{{ cm.ten }}</a>
+        {%- endif %}
+        <h1 class="bt-article__title">{{ page.title }}</h1>
+        <div class="bt-byline">
+          <strong>{{ s.ten }}</strong>
+          <span aria-hidden="true">·</span>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d/%m/%Y" }}</time>
+          <span aria-hidden="true">·</span>
+          <span>{{ phut_doc }} phút đọc</span>
+        </div>
+        {%- if page.image %}
+        <img class="bt-article__cover" src="{{ page.image | relative_url }}" alt="">
+        {%- endif %}
+        <div class="bt-content">
+          {{ content }}
+        </div>
+        {%- if page.tags.size > 0 %}
+        <div class="bt-tags">
+          <span>Thẻ:</span>
+          {%- for t in page.tags %}
+          <a class="bt-tag" href="{{ '/the/' | relative_url }}#{{ t | slugify }}">#{{ t }}</a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </article>
+
+      <section class="bt-author">
+        {%- if s.anh_dai_dien != "" and s.anh_dai_dien %}
+        <img class="bt-avatar bt-avatar--sm" src="{{ s.anh_dai_dien | relative_url }}" alt="" style="margin:0">
+        {%- endif %}
+        <div class="bt-author__text">
+          <p class="bt-eyebrow">Tác giả</p>
+          <p class="bt-author__name">{{ s.ten }}</p>
+          <p>{{ s.gioi_thieu_ngan }} <a href="{{ '/gioi-thieu/' | relative_url }}">Xem hồ sơ →</a></p>
+        </div>
+      </section>
+
+      {%- if page.previous or page.next %}
+      <nav class="bt-postnav" aria-label="Bài trước và bài sau">
+        {%- if page.previous %}
+        <a href="{{ page.previous.url | relative_url }}"><span>← Bài trước</span>{{ page.previous.title }}</a>
+        {%- endif %}
+        {%- if page.next %}
+        <a class="bt-postnav__next" href="{{ page.next.url | relative_url }}"><span>Bài sau →</span>{{ page.next.title }}</a>
+        {%- endif %}
+      </nav>
+      {%- endif %}
+
+      {%- assign cung_muc = site.posts | where: "category", page.category -%}
+      {%- assign co_lien_quan = false -%}
+      {%- for p in cung_muc -%}{%- if p.url != page.url -%}{%- assign co_lien_quan = true -%}{%- endif -%}{%- endfor -%}
+      {%- if co_lien_quan %}
+      <section class="bt-related">
+        <h2>Bài viết liên quan</h2>
+        <div class="bt-grid bt-grid--3">
+          {%- assign dem = 0 -%}
+          {%- for p in cung_muc -%}
+            {%- if p.url != page.url and dem < 3 -%}
+              {%- include post-card.html post=p words=16 -%}
+              {%- assign dem = dem | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endif %}
+
+      {% include comments.html %}
+    </main>
+    {% include sidebar.html %}
+  </div>
+</div>

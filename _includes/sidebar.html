@@ -1,0 +1,54 @@
+{%- assign s = site.data.site -%}
+<aside class="bt-sidebar" aria-label="Thanh bên">
+  <section class="bt-widget bt-widget--accent">
+    {%- if s.anh_dai_dien != "" and s.anh_dai_dien %}
+    <img class="bt-avatar bt-avatar--sm" src="{{ s.anh_dai_dien | relative_url }}" alt="Ảnh của {{ s.ten }}">
+    {%- else %}
+    <div class="bt-avatar bt-avatar--sm" aria-hidden="true">Ảnh</div>
+    {%- endif %}
+    <h2>{{ s.ten }}</h2>
+    <p>{{ s.gioi_thieu_ngan }}</p>
+    <p><a href="{{ '/gioi-thieu/' | relative_url }}">Đọc thêm về mình →</a></p>
+  </section>
+
+  <section class="bt-widget">
+    <h2>Chuyên mục</h2>
+    <ul>
+      {%- for cm in site.data.chuyen_muc %}
+      {%- assign so_bai = site.categories[cm.ten] | size %}
+      <li><a href="{{ '/chuyen-muc/' | append: cm.slug | append: '/' | relative_url }}">{{ cm.ten }} <small>{{ so_bai }}</small></a></li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  {%- if site.tags.size > 0 %}
+  <section class="bt-widget">
+    <h2>Thẻ</h2>
+    <div class="bt-taglist">
+      {%- for tag in site.tags limit: 20 %}
+      <a class="bt-tag" href="{{ '/the/' | relative_url }}#{{ tag[0] | slugify }}">#{{ tag[0] }}</a>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
+  <section class="bt-widget">
+    <h2>Dự án nổi bật</h2>
+    {%- if site.du_an.size > 0 %}
+    <ul>
+      {%- for p in site.du_an limit: 3 %}
+      <li><a href="{{ p.url | relative_url }}">{{ p.title }} <small>{{ p.trang_thai }}</small></a></li>
+      {%- endfor %}
+    </ul>
+    {%- else %}
+    <p>Dự án sẽ sớm xuất hiện ở đây.</p>
+    {%- endif %}
+    <p><a href="{{ '/du-an/' | relative_url }}">Xem tất cả dự án →</a></p>
+  </section>
+
+  <section class="bt-widget bt-widget--primary">
+    <h2>Đọc nhật ký mỗi Chủ nhật</h2>
+    <p>Bài nhật ký tuần lên vào sáng Chủ nhật. Theo dõi để không bỏ lỡ.</p>
+    <a class="bt-btn" href="{{ '/feed.xml' | relative_url }}">Theo dõi qua RSS</a>
+  </section>
+</aside>

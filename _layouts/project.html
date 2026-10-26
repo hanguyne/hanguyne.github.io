@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<main class="bt-wrap bt-narrow bt-section">
+  <p><a href="{{ '/du-an/' | relative_url }}">← Tất cả dự án</a></p>
+  {%- if page.trang_thai %}
+  <span class="bt-badge{% if page.trang_thai == 'Đã hoàn thành' %} bt-badge--done{% endif %}">{{ page.trang_thai }}</span>
+  {%- endif %}
+  <h1 class="bt-article__title">{{ page.title }}</h1>
+  {%- if page.tom_tat %}<p class="bt-lead">{{ page.tom_tat }}</p>{% endif %}
+  {%- if page.cong_nghe.size > 0 %}
+  <div class="bt-tech">{% for c in page.cong_nghe %}<span>{{ c }}</span>{% endfor %}</div>
+  {%- endif %}
+  {%- if page.image %}
+  <img class="bt-article__cover" src="{{ page.image | relative_url }}" alt="" style="margin-top:24px">
+  {%- endif %}
+  <div class="bt-content">
+    {{ content }}
+  </div>
+  {%- assign demo = page.link_demo | default: "" -%}
+  {%- assign ma_nguon = page.link_ma_nguon | default: "" -%}
+  {%- if demo != "" or ma_nguon != "" %}
+  <div class="bt-actions" style="margin-top:24px">
+    {%- if demo != "" %}<a class="bt-btn" href="{{ demo }}">Xem bản chạy thử</a>{% endif %}
+    {%- if ma_nguon != "" %}<a class="bt-btn bt-btn--outline" href="{{ ma_nguon }}">Mã nguồn</a>{% endif %}
+  </div>
+  {%- endif %}
+  <section class="bt-cta">
+    <div>
+      <h2>Theo dõi tiến độ mỗi Chủ nhật</h2>
+      <p>Cập nhật dự án này có trong các bài nhật ký tuần.</p>
+    </div>
+    <a class="bt-btn" href="{{ '/chuyen-muc/nhat-ky-hang-tuan/' | relative_url }}">Đọc nhật ký tuần</a>
+  </section>
+</main>

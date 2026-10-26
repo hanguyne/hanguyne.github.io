@@ -1,0 +1,43 @@
+---
+title: Liên hệ
+eyebrow: Liên hệ
+mo_ta: Góp ý về bài viết, đề xuất chủ đề hay cơ hội hợp tác — mình sẽ phản hồi sớm nhất có thể.
+permalink: /lien-he/
+---
+{%- assign s = site.data.site -%}
+{%- if site.formspree_id and site.formspree_id != "" %}
+<form class="bt-form" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+  <input type="hidden" name="_subject" value="Lời nhắn mới từ {{ site.title }}">
+  <p class="bt-hp" aria-hidden="true"><label for="lh-gotcha">Bỏ trống ô này</label><input id="lh-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></p>
+  <div class="bt-form__row">
+    <div class="bt-field">
+      <label for="lh-ten">Họ và tên *</label>
+      <input id="lh-ten" type="text" name="ten" required maxlength="100" autocomplete="name">
+    </div>
+    <div class="bt-field">
+      <label for="lh-email">Email *</label>
+      <input id="lh-email" type="email" name="email" required maxlength="150" autocomplete="email">
+    </div>
+  </div>
+  <div class="bt-field">
+    <label for="lh-chu-de">Chủ đề</label>
+    <select id="lh-chu-de" name="chu_de">
+      <option>Góp ý bài viết</option>
+      <option>Đề xuất chủ đề</option>
+      <option>Hợp tác</option>
+      <option>Khác</option>
+    </select>
+  </div>
+  <div class="bt-field">
+    <label for="lh-loi-nhan">Lời nhắn *</label>
+    <textarea id="lh-loi-nhan" name="loi_nhan" rows="6" required maxlength="5000"></textarea>
+  </div>
+  <button type="submit" class="bt-btn">Gửi lời nhắn</button>
+</form>
+{%- else %}
+<p class="bt-notice">Form liên hệ chưa được bật. Chủ blog cần thêm mã Formspree vào <code>_config.yml</code> (xem hướng dẫn, bước 7).</p>
+{%- endif %}
+
+{%- if s.email != "" and s.email %}
+<p>Hoặc gửi email trực tiếp: <a href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+{%- endif %}

@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------
+# Cấu hình chính của blog. Sửa 3 dòng có chú thích "SỬA" bên dưới.
+# ---------------------------------------------------------------
+title: "Nhật ký của Nguyễn T.T Hà"            # SỬA: tên blog
+description: "Nhật ký mỗi tuần về công việc, học tập, dự án và hành trình sự nghiệp. Bài mới mỗi Chủ nhật."
+url: "https://hanguyne.github.io"    # SỬA: thay TEN-TAI-KHOAN bằng tên tài khoản GitHub
+baseurl: ""
+author: "[Nguyễn T.T Hà]"                       # SỬA: tên của bạn
+lang: vi
+timezone: Asia/Ho_Chi_Minh
+
+# Bài có ngày trong tương lai sẽ chưa hiện, tới giờ mới tự lên.
+future: false
+permalink: /:year/:month/:title/
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+paginate: 10
+paginate_path: "/blog/trang-:num/"
+
+collections:
+  du_an:
+    output: true
+    permalink: /du-an/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: du_an
+    values:
+      layout: project
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+feed:
+  path: feed.xml
+
+# Form liên hệ: dán mã form Formspree vào đây (xem HUONG-DAN.md, bước 7).
+formspree_id: ""
+
+# Bình luận Giscus: điền sau khi bật ở giscus.app (xem HUONG-DAN.md, bước 8).
+giscus:
+  repo: ""
+  repo_id: ""
+  category: "Announcements"
+  category_id: ""
+
+exclude:
+  - README.md
+  - HUONG-DAN.md
+  - .pages.yml

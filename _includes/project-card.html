@@ -1,0 +1,17 @@
+{%- assign p = include.project -%}
+<article class="bt-card" data-project-status="{{ p.trang_thai | slugify }}">
+  {%- if p.image %}
+  <a class="bt-card__media" href="{{ p.url | relative_url }}" tabindex="-1"><img src="{{ p.image | relative_url }}" alt="" loading="lazy"></a>
+  {%- endif %}
+  <div class="bt-card__body">
+    {%- if p.trang_thai %}
+    <span class="bt-badge{% if p.trang_thai == 'Đã hoàn thành' %} bt-badge--done{% endif %}">{{ p.trang_thai }}</span>
+    {%- endif %}
+    <h2 class="bt-card__title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+    <p class="bt-card__excerpt">{{ p.tom_tat }}</p>
+    {%- if p.cong_nghe.size > 0 %}
+    <div class="bt-tech">{% for c in p.cong_nghe %}<span>{{ c }}</span>{% endfor %}</div>
+    {%- endif %}
+    <a class="bt-more" href="{{ p.url | relative_url }}">Xem chi tiết →</a>
+  </div>
+</article>

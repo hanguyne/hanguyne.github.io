@@ -1,0 +1,19 @@
+{%- assign p = include.post -%}
+{%- assign cm = site.data.chuyen_muc | where: "ten", p.category | first -%}
+{%- assign words = include.words | default: 28 -%}
+<article class="bt-card{% if include.featured %} bt-card--featured{% endif %}">
+  {%- if p.image %}
+  <a class="bt-card__media" href="{{ p.url | relative_url }}" tabindex="-1"><img src="{{ p.image | relative_url }}" alt="" loading="lazy"></a>
+  {%- endif %}
+  <div class="bt-card__body">
+    {%- if cm %}
+    <a class="bt-chip" href="{{ '/chuyen-muc/' | append: cm.slug | append: '/' | relative_url }}">{{ cm.ten }}</a>
+    {%- endif %}
+    <h3 class="bt-card__title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+    <p class="bt-card__excerpt">{{ p.excerpt | strip_html | truncatewords: words }}</p>
+    <time class="bt-meta" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%d/%m/%Y" }}</time>
+    {%- if include.featured %}
+    <a class="bt-more" href="{{ p.url | relative_url }}">Đọc tiếp →</a>
+    {%- endif %}
+  </div>
+</article>

@@ -1,0 +1,9 @@
+{%- assign p = include.post -%}
+<li class="bt-card bt-row">
+  <div class="bt-date" aria-hidden="true"><strong>{{ p.date | date: "%d" }}</strong><span>Th{{ p.date | date: "%-m" }}</span></div>
+  <div class="bt-row__body">
+    <h2><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+    <p>{{ p.excerpt | strip_html | truncatewords: 30 }}</p>
+    <span class="bt-meta"><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%d/%m/%Y" }}</time>{% for t in p.tags %} · #{{ t }}{% endfor %}</span>
+  </div>
+</li>

@@ -1,0 +1,44 @@
+---
+layout: default
+---
+{%- assign s = site.data.site -%}
+<section class="bt-hero">
+  <div class="bt-wrap bt-hero__inner">
+    <div class="bt-hero__text">
+      <p class="bt-pill">Blog cá nhân · bài mới mỗi Chủ nhật</p>
+      <h1>{{ s.hero_tieu_de }}</h1>
+      <p class="bt-lead">{{ s.hero_mo_ta }}</p>
+      <div class="bt-actions">
+        <a class="bt-btn" href="{{ '/blog/' | relative_url }}">Đọc bài mới nhất</a>
+        <a class="bt-btn bt-btn--outline" href="{{ '/gioi-thieu/' | relative_url }}">Về mình</a>
+      </div>
+    </div>
+    {%- if s.anh_dai_dien != "" and s.anh_dai_dien %}
+    <img class="bt-avatar" src="{{ s.anh_dai_dien | relative_url }}" alt="Ảnh của {{ s.ten }}">
+    {%- else %}
+    <div class="bt-avatar" aria-hidden="true">Thêm ảnh của bạn trong Pages CMS</div>
+    {%- endif %}
+  </div>
+</section>
+
+<div class="bt-wrap bt-section">
+  <div class="bt-layout">
+    <main class="bt-main">
+      <div class="bt-rowhead"><h2>Bài mới nhất</h2></div>
+      {%- if site.posts.size > 0 %}
+        {% include post-card.html post=site.posts.first featured=true words=45 %}
+        {%- if site.posts.size > 1 %}
+        <div class="bt-rowhead"><h2>Bài viết trước</h2><a class="bt-more" href="{{ '/blog/' | relative_url }}">Xem tất cả →</a></div>
+        <div class="bt-grid">
+          {%- for post in site.posts offset: 1 limit: 4 %}
+          {% include post-card.html post=post %}
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      {%- else %}
+      <div class="bt-empty">Bài nhật ký đầu tiên sẽ xuất hiện ở đây vào Chủ nhật này.</div>
+      {%- endif %}
+    </main>
+    {% include sidebar.html %}
+  </div>
+</div>
