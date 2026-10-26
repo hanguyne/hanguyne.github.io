@@ -1,0 +1,150 @@
+# Cấu hình trang quản trị Pages CMS (app.pagescms.org)
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  - name: posts
+    label: Bài viết
+    type: collection
+    path: _posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, category]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Tiêu đề
+        type: string
+        required: true
+      - name: date
+        label: Ngày đăng (chọn Chủ nhật 07:00 để hẹn giờ)
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd HH:mm"
+      - name: category
+        label: Chuyên mục
+        type: select
+        required: true
+        default: Nhật ký hằng tuần
+        options:
+          values:
+            - Nhật ký hằng tuần
+            - Học tập
+            - Sự nghiệp
+            - Đời sống
+      - name: tags
+        label: Thẻ
+        type: string
+        list: true
+      - name: image
+        label: Ảnh bìa
+        type: image
+      - name: excerpt
+        label: Tóm tắt (hiện trên thẻ bài viết)
+        type: text
+      - name: body
+        label: Nội dung
+        type: rich-text
+
+  - name: du_an
+    label: Dự án
+    type: collection
+    path: _du_an
+    filename: "{primary}.md"
+    view:
+      fields: [title, trang_thai]
+    fields:
+      - name: title
+        label: Tên dự án
+        type: string
+        required: true
+      - name: trang_thai
+        label: Trạng thái
+        type: select
+        default: Đang thực hiện
+        options:
+          values:
+            - Đang thực hiện
+            - Đã hoàn thành
+      - name: tom_tat
+        label: Tóm tắt
+        type: text
+      - name: cong_nghe
+        label: Công nghệ
+        type: string
+        list: true
+      - name: image
+        label: Ảnh dự án
+        type: image
+      - name: thu_tu
+        label: Thứ tự hiển thị (số nhỏ hiện trước)
+        type: number
+      - name: link_demo
+        label: Link bản chạy thử
+        type: string
+      - name: link_ma_nguon
+        label: Link mã nguồn
+        type: string
+      - name: body
+        label: Nội dung chi tiết
+        type: rich-text
+
+  - name: gioi-thieu
+    label: Trang Giới thiệu
+    type: file
+    path: gioi-thieu.md
+    fields:
+      - name: title
+        label: Tiêu đề
+        type: string
+      - name: eyebrow
+        label: Dòng nhỏ phía trên tiêu đề
+        type: string
+      - name: permalink
+        label: Đường dẫn (giữ nguyên)
+        type: string
+        hidden: true
+        default: /gioi-thieu/
+      - name: body
+        label: Nội dung
+        type: rich-text
+
+  - name: thong-tin
+    label: Thông tin của bạn
+    type: file
+    path: _data/site.yml
+    format: yaml
+    fields:
+      - name: ten
+        label: Tên của bạn
+        type: string
+      - name: gioi_thieu_ngan
+        label: Câu giới thiệu ngắn (sidebar, cuối bài)
+        type: text
+      - name: hero_tieu_de
+        label: Tiêu đề lời chào trang chủ
+        type: string
+      - name: hero_mo_ta
+        label: Đoạn mô tả trang chủ
+        type: text
+      - name: anh_dai_dien
+        label: Ảnh đại diện
+        type: image
+      - name: email
+        label: Email liên hệ (để trống nếu không muốn hiện)
+        type: string
+      - name: facebook
+        label: Link Facebook
+        type: string
+      - name: linkedin
+        label: Link LinkedIn
+        type: string
+      - name: github
+        label: Link GitHub
+        type: string
