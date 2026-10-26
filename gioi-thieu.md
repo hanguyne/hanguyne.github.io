@@ -3,8 +3,7 @@ title: Giới thiệu
 eyebrow: Về mình
 permalink: /gioi-thieu/
 ---
-
-Mình là **[Tên bạn]** — [Nghề nghiệp / vai trò hiện tại] tại [Nơi làm việc hoặc học tập]. Mình quan tâm đến [lĩnh vực 1] và [lĩnh vực 2].
+Mình là Hà — Sinh viên năm 4 của Đại học Bách Khoa Hà Nội. Mình quan tâm đến Data Analyst và AI.
 
 ## Vì sao mình viết blog này
 
@@ -23,3 +22,4 @@ Mình là **[Tên bạn]** — [Nghề nghiệp / vai trò hiện tại] tại [
 [Kỹ năng 1] · [Kỹ năng 2] · [Kỹ năng 3] · [Sở thích 1]
 
 > Có câu hỏi, góp ý hoặc muốn hợp tác? [Gửi lời nhắn cho mình](/lien-he/).
+
